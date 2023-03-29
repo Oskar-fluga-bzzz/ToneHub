@@ -1,9 +1,11 @@
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 // --- Hämtar en Spotify API Access Token --- //
 const CLIENT_ID = '7269f024721e4773b4d4251e0616a20e'
 const CLIENT_SECRET = '51bd5effc3aa4aea9a880d677034eb09'
 let accessToken = ''
-function tokenRequest() {
+async function tokenRequest() {
     var authParameters = {
         method: 'POST',
         headers: {
@@ -24,30 +26,68 @@ function tokenRequest() {
 }
 
 
-// --- Kör funktionen --- //
-tokenRequest() .then(accessToken => {
-
-
 // --- Sökparametrar --- //
-let searchString = "billie eilish"
+let searchString = ""
 let searchType = "artist"
 let artistID = ""
-let countryCode = "SE"
-let resultLimit = ""
+let countryCode = ""
+let resultLimit = "50"
 let resultOffset = ""
 let includeExternalAudio = ""
 
 
-// --- söker efter en artist och returnerar spotify id for artisten som är högst upp i resultaten --- //
-fetch(`https://api.spotify.com/v1/search?type=${searchType}&q=${searchString}`, {
+// --- getelementbyid --- //
+let searchText = document.getElementById("txtSearch")
+let resultsDiv = document.getElementById("searchResults")
+
+
+// --- Sökfunktion --- //
+async function search(string, type) {
+return fetch(`https://api.spotify.com/v1/search?type=${type}&q=${string}&limit=${resultLimit}`, {
     headers: {
         'Authorization': 'Bearer ' + accessToken
     }
 })
 .then(response => response.json())
-.then(data =>
-console.log(data.artists.items[0].name + ', ' + data.artists.items[0].id))
+.then(data => {
+    return data
+})
 .catch(error => console.error(error))
+}
+
+
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+// --- Kör token funktionen --- //
+tokenRequest() .then(token => {
+
+
+// --- Sökfält ... //
+searchText.onkeydown = async function (event) {
+    if (event.key === "Enter") {
+      event.preventDefault()
+
+      let searchString = searchText.value
+      console.log("Searching for...", searchString)
+
+      let results = await search(searchString, searchType)
+
+      console.log(results)
+      document.getElementById("searchResults").innerHTML = ""
+      printResults(results)
+    }
+  }
+
+
+// --- skriver ut resultat --- //
+function printResults(input) {
+    let fullList = input
+    for (let i = 0; i < Number(resultLimit); i++) {
+        const listItem = fullList.artists.items[i].name
+        resultsDiv.insertAdjacentHTML("beforeend", "<div><h1>" + listItem + "</h1></div>")
+    }
+}
 
 
 });
