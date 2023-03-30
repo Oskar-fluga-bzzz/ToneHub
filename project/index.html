@@ -11,14 +11,14 @@
     </head>
     <body>
         <div style="display: flex;">
-            <form><input type="text" id="txtSearch" placeholder="Search here" /></form>
             <form>
-              <select id="typeselect"> 
-                <option value="track"> Song </option> 
-                <option value="album"> Album </option> 
-                <option value="artist"> Artist </option> 
-              </select>
-            </form>
+                <input class="searchbox" type="text" id="txtSearch" placeholder="Search here" />
+                 <select class="searchbox" id="typeselect"> 
+                    <option value="track"> in songs </option> 
+                    <option value="album"> in albums </option> 
+                    <option value="artist"> in artists </option> 
+                 </select>
+             </form>
           </div>
         <div id="searchResults"></div>
         <script src="app.js"></script>

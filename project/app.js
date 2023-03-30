@@ -28,10 +28,10 @@ async function tokenRequest() {
 
 // --- Sökparametrar --- //
 let searchString = ""
-let searchType = "track"
+let searchType = ""
 let artistID = ""
 let countryCode = ""
-let resultLimit = "20"
+let resultLimit = "50"
 let resultOffset = ""
 let includeExternalAudio = ""
 
@@ -93,7 +93,8 @@ function printResults(resultList) {
         } else if (typeSelect.value === "track") {
         listItem = fullList.tracks.items[i].name
         } 
-        resultsDiv.insertAdjacentHTML("beforeend", "<div>" + listItem + "</div>")
+        resultsDiv.insertAdjacentHTML("beforeend", "<div id='resultbox"+[i]+"'></div>")
+        document.getElementById("resultbox"+[i]).innerHTML = "<h3>" + listItem + "</h3>"
     }
 }
 

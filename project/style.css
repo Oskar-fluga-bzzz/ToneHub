@@ -1,4 +1,10 @@
 body {
     background-color: black;
     color: white;
+    text-align: center;
+}
+
+.searchbox {
+    padding: 10px;
+    width: 200px;
 }
