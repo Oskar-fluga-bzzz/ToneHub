@@ -10,7 +10,16 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <form><input type="text" id="txtSearch" placeholder="Search here" /></form>
+        <div style="display: flex;">
+            <form><input type="text" id="txtSearch" placeholder="Search here" /></form>
+            <form>
+              <select id="typeselect"> 
+                <option value="track"> Song </option> 
+                <option value="album"> Album </option> 
+                <option value="artist"> Artist </option> 
+              </select>
+            </form>
+          </div>
         <div id="searchResults"></div>
         <script src="app.js"></script>
     </body>

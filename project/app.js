@@ -28,10 +28,10 @@ async function tokenRequest() {
 
 // --- Sökparametrar --- //
 let searchString = ""
-let searchType = "artist"
+let searchType = "track"
 let artistID = ""
 let countryCode = ""
-let resultLimit = "50"
+let resultLimit = "20"
 let resultOffset = ""
 let includeExternalAudio = ""
 
@@ -39,6 +39,7 @@ let includeExternalAudio = ""
 // --- getelementbyid --- //
 let searchText = document.getElementById("txtSearch")
 let resultsDiv = document.getElementById("searchResults")
+let typeSelect = document.getElementById("typeselect")
 
 
 // --- Sökfunktion --- //
@@ -69,7 +70,8 @@ searchText.onkeydown = async function (event) {
       event.preventDefault()
 
       let searchString = searchText.value
-      console.log("Searching for...", searchString)
+      let searchType = typeSelect.value
+      console.log("Searching for... " + searchString + ", in " + searchType + "s")
 
       let results = await search(searchString, searchType)
 
@@ -81,13 +83,22 @@ searchText.onkeydown = async function (event) {
 
 
 // --- skriver ut resultat --- //
-function printResults(input) {
-    let fullList = input
+function printResults(resultList) {
+    let fullList = resultList
     for (let i = 0; i < Number(resultLimit); i++) {
-        const listItem = fullList.artists.items[i].name
-        resultsDiv.insertAdjacentHTML("beforeend", "<div><h1>" + listItem + "</h1></div>")
+        if (typeSelect.value === "artist") {
+        listItem = fullList.artists.items[i].name
+        } else if (typeSelect.value === "album") {
+            listItem = fullList.albums.items[i].name
+        } else if (typeSelect.value === "track") {
+        listItem = fullList.tracks.items[i].name
+        } 
+        resultsDiv.insertAdjacentHTML("beforeend", "<div>" + listItem + "</div>")
     }
 }
 
 
 });
+
+
+//--------------------------------------------------------------------------------------------------------
