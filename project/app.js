@@ -42,6 +42,29 @@ let resultsDiv = document.getElementById("searchResults")
 let typeSelect = document.getElementById("typeselect")
 
 
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+// --- Hämtar rekommendationer --- //
+async function getRecommendations() {
+    fetch('https://api.spotify.com/v1/playlists/0sOfCMEfYeMhwDJQFQFPpZ?si=9d999c244722467c', {
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        fullList = data
+        for (let i = 0; i < Number(resultLimit); i++) {
+            listItem = fullList.tracks.items[i].track.name
+            resultsDiv.insertAdjacentHTML("beforeend", "<div id='resultbox"+[i]+"'></div>")
+            document.getElementById("resultbox"+[i]).innerHTML = "<h3>" + listItem + "</h3>"
+        }
+    })
+    .catch(error => console.error(error))
+}
+
+
 // --- Sökfunktion --- //
 async function search(string, type) {
 return fetch(`https://api.spotify.com/v1/search?type=${type}&q=${string}&limit=${resultLimit}`, {
@@ -57,11 +80,32 @@ return fetch(`https://api.spotify.com/v1/search?type=${type}&q=${string}&limit=$
 }
 
 
+// --- skriver ut resultat --- //
+function printResults(resultList) {
+    let fullList = resultList
+    for (let i = 0; i < Number(resultLimit); i++) {
+        if (typeSelect.value === "artist") {
+        listItem = fullList.artists.items[i].name
+        } else if (typeSelect.value === "album") {
+            listItem = fullList.albums.items[i].name
+        } else if (typeSelect.value === "track") {
+        listItem = fullList.tracks.items[i].name
+        } 
+        resultsDiv.insertAdjacentHTML("beforeend", "<div id='resultbox"+[i]+"'></div>")
+        document.getElementById("resultbox"+[i]).innerHTML = "<h3>" + listItem + "</h3>"
+    }
+}
+
+
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 // --- Kör token funktionen --- //
 tokenRequest() .then(token => {
+
+
+// skriver ut rekommendationer --- //
+getRecommendations()
 
 
 // --- Sökfält ... //
@@ -80,23 +124,6 @@ searchText.onkeydown = async function (event) {
       printResults(results)
     }
   }
-
-
-// --- skriver ut resultat --- //
-function printResults(resultList) {
-    let fullList = resultList
-    for (let i = 0; i < Number(resultLimit); i++) {
-        if (typeSelect.value === "artist") {
-        listItem = fullList.artists.items[i].name
-        } else if (typeSelect.value === "album") {
-            listItem = fullList.albums.items[i].name
-        } else if (typeSelect.value === "track") {
-        listItem = fullList.tracks.items[i].name
-        } 
-        resultsDiv.insertAdjacentHTML("beforeend", "<div id='resultbox"+[i]+"'></div>")
-        document.getElementById("resultbox"+[i]).innerHTML = "<h3>" + listItem + "</h3>"
-    }
-}
 
 
 });
