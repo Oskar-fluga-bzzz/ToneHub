@@ -45,6 +45,26 @@ let typeSelect = document.getElementById("typeselect")
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
+// --- Slumpsorterar en array --- //
+function shuffle(array) {
+    let currentIndex = array.length,  randomIndex;
+  
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  
+    return array;
+  }
+
+
 // --- Hämtar rekommendationer --- //
 async function getRecommendations() {
     fetch('https://api.spotify.com/v1/playlists/0sOfCMEfYeMhwDJQFQFPpZ?si=9d999c244722467c', {
@@ -54,9 +74,9 @@ async function getRecommendations() {
     })
     .then(response => response.json())
     .then(data => {
-        fullList = data
+        fullList = shuffle(data.tracks.items)
         for (let i = 0; i < Number(resultLimit); i++) {
-            listItem = fullList.tracks.items[i].track.name
+            listItem = fullList[i].track.name + " - " + fullList[i].track.artists[0].name
             resultsDiv.insertAdjacentHTML("beforeend", "<div id='resultbox"+[i]+"'></div>")
             document.getElementById("resultbox"+[i]).innerHTML = "<h3>" + listItem + "</h3>"
         }
@@ -87,9 +107,9 @@ function printResults(resultList) {
         if (typeSelect.value === "artist") {
         listItem = fullList.artists.items[i].name
         } else if (typeSelect.value === "album") {
-            listItem = fullList.albums.items[i].name
+            listItem = fullList.albums.items[i].name + " - " + fullList.albums.items[i].artists[0].name
         } else if (typeSelect.value === "track") {
-        listItem = fullList.tracks.items[i].name
+        listItem = fullList.tracks.items[i].name + " - " + fullList.tracks.items[i].artists[0].name
         } 
         resultsDiv.insertAdjacentHTML("beforeend", "<div id='resultbox"+[i]+"'></div>")
         document.getElementById("resultbox"+[i]).innerHTML = "<h3>" + listItem + "</h3>"
