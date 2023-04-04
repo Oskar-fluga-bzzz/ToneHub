@@ -65,9 +65,9 @@ function shuffle(array) {
   }
 
 
-// --- Hämtar rekommendationer --- //
+// --- Skriver ut rekommendationer --- //
 async function getRecommendations() {
-    fetch('https://api.spotify.com/v1/playlists/0sOfCMEfYeMhwDJQFQFPpZ?si=9d999c244722467c', {
+    fetch('https://api.spotify.com/v1/playlists/30Vqlaj8thTDahV45hY8ok?si=2b0a63290fba4ffe', {
         headers: {
             'Authorization': 'Bearer ' + accessToken
         }
@@ -75,10 +75,11 @@ async function getRecommendations() {
     .then(response => response.json())
     .then(data => {
         fullList = shuffle(data.tracks.items)
+        console.log(data)
         for (let i = 0; i < Number(resultLimit); i++) {
             listItem = fullList[i].track.name + " - " + fullList[i].track.artists[0].name
-            resultsDiv.insertAdjacentHTML("beforeend", "<div id='resultbox"+[i]+"'></div>")
-            document.getElementById("resultbox"+[i]).innerHTML = "<h3>" + listItem + "</h3>"
+            listImage = fullList[i].track.album.images[1].url
+            printResults(listItem, listImage, i)
         }
     })
     .catch(error => console.error(error))
@@ -100,20 +101,29 @@ return fetch(`https://api.spotify.com/v1/search?type=${type}&q=${string}&limit=$
 }
 
 
-// --- skriver ut resultat --- //
-function printResults(resultList) {
+// --- Hämtar resultat --- //
+function getResults(resultList) {
     let fullList = resultList
     for (let i = 0; i < Number(resultLimit); i++) {
         if (typeSelect.value === "artist") {
         listItem = fullList.artists.items[i].name
+        listImage = fullList.artists.items[i].images[1].url
         } else if (typeSelect.value === "album") {
-            listItem = fullList.albums.items[i].name + " - " + fullList.albums.items[i].artists[0].name
+        listItem = fullList.albums.items[i].name + " - " + fullList.albums.items[i].artists[0].name
+        listImage = fullList.albums.items[i].images[1].url
         } else if (typeSelect.value === "track") {
         listItem = fullList.tracks.items[i].name + " - " + fullList.tracks.items[i].artists[0].name
+        listImage = fullList.tracks.items[i].album.images[1].url
         } 
-        resultsDiv.insertAdjacentHTML("beforeend", "<div id='resultbox"+[i]+"'></div>")
-        document.getElementById("resultbox"+[i]).innerHTML = "<h3>" + listItem + "</h3>"
+        printResults(listItem, listImage, i)
     }
+}
+
+
+// --- Skriver ut resultat --- //
+function printResults(item, image, index) {
+    resultsDiv.insertAdjacentHTML("beforeend", "<div class='resultContainer' id='resultbox"+[index]+"'></div>")
+    document.getElementById("resultbox"+[index]).innerHTML = "<img src='" + image + "' alt='couldn't load image' width='275px' height='275px'> <h3>" + item + "</h3>"
 }
 
 
@@ -124,11 +134,11 @@ function printResults(resultList) {
 tokenRequest() .then(token => {
 
 
-// skriver ut rekommendationer --- //
+// --- skriver ut rekommendationer --- //
 getRecommendations()
 
 
-// --- Sökfält ... //
+// --- Sökfält --- //
 searchText.onkeydown = async function (event) {
     if (event.key === "Enter") {
       event.preventDefault()
@@ -141,7 +151,7 @@ searchText.onkeydown = async function (event) {
 
       console.log(results)
       document.getElementById("searchResults").innerHTML = ""
-      printResults(results)
+      getResults(results)
     }
   }
 

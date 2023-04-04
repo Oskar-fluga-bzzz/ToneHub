@@ -8,3 +8,21 @@ body {
     padding: 10px;
     width: 200px;
 }
+
+.container {
+    column-count: 4;
+}
+
+.upperContainer {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.resultContainer {
+    min-height: 410px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-style: double;
+    border-color: aliceblue;
+    break-after:avoid-column;
+}
