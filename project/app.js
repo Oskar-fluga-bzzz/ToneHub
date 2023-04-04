@@ -31,7 +31,7 @@ let searchString = ""
 let searchType = ""
 let artistID = ""
 let countryCode = ""
-let resultLimit = "50"
+let resultLimit = "36"
 let resultOffset = ""
 let includeExternalAudio = ""
 
@@ -40,6 +40,7 @@ let includeExternalAudio = ""
 let searchText = document.getElementById("txtSearch")
 let resultsDiv = document.getElementById("searchResults")
 let typeSelect = document.getElementById("typeselect")
+let titleText = document.getElementById("titleTxt")
 
 
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -56,6 +57,12 @@ function shuffle(array) {
     }
     return array;
   }
+
+
+function homeClick() {
+    document.getElementById("searchResults").innerHTML = ""
+    getRecommendations()
+}
 
 
 // --- Skriver ut rekommendationer --- //

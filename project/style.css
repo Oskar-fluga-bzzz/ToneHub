@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,600&family=Libre+Barcode+128+Text&family=Oswald:wght@200;300&family=Poiret+One&family=Press+Start+2P&family=Source+Sans+Pro&display=swap');
+
+
 /* body css */
 body {
     background-color: black;
@@ -12,7 +15,7 @@ body {
     width: 150px;
 }
 .upperContainer {
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 
@@ -21,7 +24,7 @@ body {
     column-count: 4;
 }
 .resultContainer {
-    min-height: 400px;
+    min-height: 425px;
     margin-bottom: 10px;
     padding: 10px;
     border-style:solid;
@@ -30,11 +33,11 @@ body {
     break-inside:avoid;
     text-align: center;
 }
-
 .itemName {
     font-size: 20px;
+    font-family: 'Poiret One', cursive;
 }
-
 .creatorName {
     font-size: 15px;
+    font-family: 'Poiret One', cursive;
 }
