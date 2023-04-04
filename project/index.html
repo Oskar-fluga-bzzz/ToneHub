@@ -10,16 +10,15 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div class="upperContainer">
-            <form>
-                <input class="searchbox" type="text" id="txtSearch" placeholder="search ToneHub" />
+        <h1> ToneHub </h1>
+            <form class="upperContainer">
+                <input style="width:500px;"class="searchbox" type="text" id="txtSearch" placeholder="search on tonehub" />
                 <select class="searchbox" id="typeselect"> 
                     <option value="track"> in songs </option> 
                     <option value="album"> in albums </option> 
                     <option value="artist"> in artists </option> 
                 </select>
             </form>
-        </div>    
         <div class="container" id="searchResults"></div>
         <script src="app.js"></script>
     </body>
