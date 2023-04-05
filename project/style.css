@@ -58,7 +58,3 @@ body {
     -ms-transition: all 1s ease;
     transition: all 1s ease;
 }
-.addInfo {
-    z-index: -1;
-    position:relative;
-}
