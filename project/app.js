@@ -31,7 +31,7 @@ let searchString = ""
 let searchType = ""
 let artistID = ""
 let countryCode = ""
-let resultLimit = "36"
+let resultLimit = "50"
 let resultOffset = ""
 let includeExternalAudio = ""
 
@@ -59,8 +59,10 @@ function shuffle(array) {
   }
 
 
+// --- Hämtar rekommendationer om användaren klickar på tonehub loggan --- //
 function homeClick() {
     document.getElementById("searchResults").innerHTML = ""
+    searchText.value = ""
     getRecommendations()
 }
 
@@ -77,7 +79,7 @@ async function getRecommendations() {
     .then(data => {
         fullList = shuffle(data.tracks.items)
         console.log(data)
-        for (let i = 0; i < Number(resultLimit); i++) {
+        for (let i = 0; i < 90; i++) {
             listItem = "<h3 class='itemName'>" + fullList[i].track.name + "</h3><h3 class='creatorName'>" + fullList[i].track.artists[0].name + "</h3>"
             listImage = fullList[i].track.album.images[1].url
             printResults(listItem, listImage, i)
@@ -107,7 +109,7 @@ function getResults(resultList) {
     let fullList = resultList
     for (let i = 0; i < Number(resultLimit); i++) {
         if (typeSelect.value === "artist") {
-        listItem = fullList.artists.items[i].name
+        listItem = "<h3 class='itemName'>" + fullList.artists.items[i].name + "</h3>" 
         listImage = fullList.artists.items[i].images[1].url
         } else if (typeSelect.value === "album") {
         listItem = "<h3 class='itemName'>" + fullList.albums.items[i].name + "</h3><h3 class='creatorName'>" + fullList.albums.items[i].artists[0].name + "</h3>"
@@ -124,7 +126,7 @@ function getResults(resultList) {
 // --- Skriver ut resultat --- //
 function printResults(item, image, index) {
     resultsDiv.insertAdjacentHTML("beforeend", "<div class='resultContainer' id='resultbox"+[index]+"'></div>")
-    document.getElementById("resultbox"+[index]).innerHTML = "<img src='" + image + "' alt='couldn't load image' width='275px' height='275px'>" + item
+    document.getElementById("resultbox"+[index]).innerHTML = "<img id='albumArt' class='album_art' src='" + image + "' alt='couldn't load image' width='200px' height='200px'>" + item 
 }
 
 

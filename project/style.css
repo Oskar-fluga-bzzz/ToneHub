@@ -6,6 +6,7 @@ body {
     background-color: black;
     color: white;
     text-align: center;
+    min-height: 4000px; 
 }
 
 
@@ -13,19 +14,23 @@ body {
 .searchbox {
     padding: 10px;
     width: 150px;
+    border-style: solid;
+    border-color: white;
+    border-radius: 5px;
+    border-width: 10px;
 }
 .upperContainer {
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 
 
 /* sökresultat */
 .container {
-    column-count: 4;
+    column-count: 5;
 }
 .resultContainer {
-    min-height: 425px;
-    margin-bottom: 10px;
+    min-height: 350px;
+    margin-bottom: 5px;
     padding: 10px;
     border-style:solid;
     border-color: black;
@@ -40,4 +45,20 @@ body {
 .creatorName {
     font-size: 15px;
     font-family: 'Poiret One', cursive;
+}
+.album_art {
+    border-radius: 5px;
+    -webkit-filter: brightness(100%);
+}
+.album_art:hover {
+    -webkit-filter: brightness(40%);
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+}
+.addInfo {
+    z-index: -1;
+    position:relative;
 }
