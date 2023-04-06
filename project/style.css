@@ -37,6 +37,7 @@ body {
     border-radius: 5px;
     break-inside:avoid;
     text-align: center;
+    position: relative;
 }
 .itemName {
     font-size: 20px;
