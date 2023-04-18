@@ -47,15 +47,19 @@ body {
     font-size: 15px;
     font-family: 'Poiret One', cursive;
 }
-.album_art {
-    border-radius: 5px;
-    -webkit-filter: brightness(100%);
-}
-.album_art:hover {
-    -webkit-filter: brightness(40%);
-    -webkit-transition: all 1s ease;
-    -moz-transition: all 1s ease;
-    -o-transition: all 1s ease;
-    -ms-transition: all 1s ease;
-    transition: all 1s ease;
+
+#album_art {position:relative;}
+#album_art .image,
+#album_art .text {transition: opacity 1s ease-in-out;}
+#album_art .text {position:absolute; top:0; left:0; opacity:0;}
+
+#album_art:hover .image {opacity:0.25;}
+#album_art:hover .text {opacity:1;}
+
+.image{ border-radius: 5px; }
+
+.text{
+    margin-left: 30px;
+    font-size: 15px;
+    font-family: 'Poiret One', cursive;
 }

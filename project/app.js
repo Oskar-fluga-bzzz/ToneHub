@@ -81,8 +81,8 @@ async function getRecommendations() {
         console.log(data)
         for (let i = 0; i < 90; i++) {
             listItem = "<h3 class='itemName'>" + fullList[i].track.name + "</h3><h3 class='creatorName'>" + fullList[i].track.artists[0].name + "</h3>"
-            listImage = "<img id='albumArt' class='album_art' src='" + fullList[i].track.album.images[1].url + "' alt='couldn't load image' width='200px' height='200px'>"
-            printResults(listItem, listImage, i)
+            imageNinfo = HTMLtemplate(fullList[i].track.album.images[1].url, "released " + fullList[i].track.album.release_date, fullList[i].track.popularity + "% popularity", fullList[i].track.explicit)
+            printResults(listItem, imageNinfo, i)
         }
     })
     .catch(error => console.error(error))
@@ -104,35 +104,35 @@ return fetch(`https://api.spotify.com/v1/search?type=${type}&q=${string}&limit=$
 }
 
 
+// --- template för html --- //
+function HTMLtemplate(image, info1, info2, info3) {
+    return imageNinfo = "<div id='album_art'><img src='" + image + "' alt='couldn't load image' width='200px' height='200px' class='image'><div class='text'> <h3>" + info1 + "</h3> <h3>" + info2 + "</h3> <h3>" + info3 + "</h3> </div></div>"
+}
+
+
 // --- Hämtar resultat --- //
 function getResults(resultList) {
     let fullList = resultList
     for (let i = 0; i < Number(resultLimit); i++) {
         if (typeSelect.value === "artist") {
         listItem = "<h3 class='itemName'>" + fullList.artists.items[i].name + "</h3>" 
-        listImage = "<img id='albumArt' class='album_art' src='" + fullList.artists.items[i].images[1].url + "' alt='couldn't load image' width='200px' height='200px'>"
+        imageNinfo = HTMLtemplate(fullList.artists.items[i].images[1].url, "info1", "info 2", "info3")
         } else if (typeSelect.value === "album") {
         listItem = "<h3 class='itemName'>" + fullList.albums.items[i].name + "</h3><h3 class='creatorName'>" + fullList.albums.items[i].artists[0].name + "</h3>"
-        listImage = "<img id='albumArt' class='album_art' src='" + fullList.albums.items[i].images[1].url + "' alt='couldn't load image' width='200px' height='200px'>"
+        imageNinfo = HTMLtemplate(fullList.albums.items[i].images[1].url, "info1", "info2", "info3")
         } else if (typeSelect.value === "track") {
         listItem = "<h3 class='itemName'>" + fullList.tracks.items[i].name + "</h3><h3 class='creatorName'>" + fullList.tracks.items[i].artists[0].name + "</h3>"
-        listImage = "<img id='albumArt' class='album_art' src='" + fullList.tracks.items[i].images[1].url + "' alt='couldn't load image' width='200px' height='200px'>"
+        imageNinfo = HTMLtemplate(fullList.tracks.items[i].album.images[1].url, "info1", "info2", "info3")
         } 
-        printResults(listItem, listImage, i)
+        printResults(listItem, imageNinfo, i)
     }
 }
 
 
-// --- Skriver ut resultat --- //
-/* function printResults(item, image, index) {
-    resultsDiv.insertAdjacentHTML("beforeend", "<div class='resultContainer' id='resultbox"+[index]+"'></div>")
-    document.getElementById("resultbox"+[index]).innerHTML = "<img id='albumArt' class='album_art' src='" + image + "' alt='couldn't load image' width='200px' height='200px'>" + item 
-}
- */
-
+ // --- Skriver ut resultat --- //
 function printResults(item, image, index) {
-    resultsDiv.insertAdjacentHTML("beforeend", "<div class='resultContainer' id='resultbox"+[index]+"'></div>")
-    document.getElementById("resultbox"+[index]).innerHTML = image + item 
+    resultsDiv.insertAdjacentHTML("beforeend", "<div class='resultContainer' id='resultbox"+index+"'></div>")
+    document.getElementById(`resultbox${index}`).innerHTML = image + item 
 }
 
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
