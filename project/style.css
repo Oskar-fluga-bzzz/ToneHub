@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,600&family=Libre+Barcode+128+Text&family=Oswald:wght@200;300&family=Poiret+One&family=Press+Start+2P&family=Source+Sans+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&family=Tenor+Sans&display=swap');
 
 
 /* body css */
 body {
-    background-color: #11151C;
+    background-color: black;
     color: white;
     text-align: center;
     min-height: 4000px; 
@@ -32,9 +32,6 @@ body {
     min-height: 350px;
     margin-bottom: 5px;
     padding: 10px;
-    border-style:solid;
-    border-color: #11151C;
-    border-radius: 5px;
     break-inside:avoid;
     text-align: center;
     position: relative;
@@ -48,23 +45,30 @@ body {
     font-family: 'Poiret One', cursive;
 }
 
+
+/* album hover */
 #album_art {position:relative;}
 #album_art .image,
-#album_art .text {transition: opacity 1s ease-in-out;}
+#album_art .text {transition: opacity 0.3s ease-in-out;}
 #album_art .text {position:absolute; top:0; left:0; opacity:0;}
 
 #album_art:hover .image {opacity:0.1;}
 #album_art:hover .text {opacity:1;}
 
-.image{ 
+
+.image {
+    border-color: white;
+    border-style: solid;
+    border-width: 2px;
     border-radius: 5px;
 }
+
 
 .text{
     text-align: left;
     margin-left: 30px;
     font-size: 14px;
-    font-family: 'Poiret One', cursive;
+    font-family: 'Tenor Sans', sans-serif;
 }
 
 a {
