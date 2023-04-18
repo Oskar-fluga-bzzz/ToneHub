@@ -67,26 +67,12 @@ function homeClick() {
 }
 
 
-// --- Skriver ut rekommendationer --- //
-async function getRecommendations() {
-    
-    fetch('https://api.spotify.com/v1/playlists/30Vqlaj8thTDahV45hY8ok?si=2b0a63290fba4ffe', {
-        headers: {
-            'Authorization': 'Bearer ' + accessToken
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        fullList = shuffle(data.tracks.items)
-        console.log(data)
-        for (let i = 0; i < 90; i++) {
-            listItem = "<h3 class='itemName'>" + fullList[i].track.name + "</h3><h3 class='creatorName'>" + fullList[i].track.artists[0].name + "</h3>"
-            imageNinfo = HTMLtemplate(fullList[i].track.album.images[1].url, "released " + fullList[i].track.album.release_date, fullList[i].track.popularity + "% popularity", fullList[i].track.explicit)
-            printResults(listItem, imageNinfo, i)
-        }
-    })
-    .catch(error => console.error(error))
-}
+// --- konverterar millisekunder till minuter och sekunder --- //
+function milliConvert(millis) {
+    var minutes = Math.floor(millis / 60000);
+    var seconds = ((millis % 60000) / 1000).toFixed(0);
+    return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+  }
 
 
 // --- Sökfunktion --- //
@@ -104,25 +90,63 @@ return fetch(`https://api.spotify.com/v1/search?type=${type}&q=${string}&limit=$
 }
 
 
-// --- template för html --- //
-function HTMLtemplate(image, info1, info2, info3) {
-    return imageNinfo = "<div id='album_art'><img src='" + image + "' alt='couldn't load image' width='200px' height='200px' class='image'><div class='text'> <h3>" + info1 + "</h3> <h3>" + info2 + "</h3> <h3>" + info3 + "</h3> </div></div>"
+// --- templates för html --- //
+function HTMLtemplate(image, info1, info2, info3, info4, linkToPage) {
+    if (info3 === true) {
+        info3 = "Explicit"
+    } else if (info3 === false) {
+        info3 = "Not Explicit"
+    }
+
+    if (typeof info2 === "number") {
+        info2 = milliConvert(info2)
+    }
+
+    if (info3 == 1) {
+        info3 = info3 + " Track"
+    } else if (info3 > 1) {
+        info3 = info3 + " Total Tracks"
+    }
+
+    return imageNinfo = "<div id='album_art'><img src='" + image + "' alt='couldn't load image' width='200px' height='200px' class='image'><div class='text'> <h3>" + info1 + "</h3> <h3>" + info2 + "</h3> <h3>" + info3 + "</h3> <h3>" + info4 + "</h3> <a href=" + linkToPage + " target='blank'><i class='fa-brands fa-spotify'> </i></a> </div></div>"
 }
 
 
-// --- Hämtar resultat --- //
+// --- Skriver ut rekommendationer --- //
+async function getRecommendations() {
+    
+    fetch('https://api.spotify.com/v1/playlists/30Vqlaj8thTDahV45hY8ok?si=2b0a63290fba4ffe', {
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        fullList = shuffle(data.tracks.items)
+        console.log(data)
+        for (let i = 0; i < 90; i++) {
+            listItem = "<h3 class='itemName'>" + fullList[i].track.name + "</h3><h3 class='creatorName'>" + fullList[i].track.artists[0].name + "</h3>"
+            imageNinfo = HTMLtemplate(fullList[i].track.album.images[1].url, fullList[i].track.album.release_date, fullList[i].track.duration_ms, fullList[i].track.explicit, fullList[i].track.popularity + "% popularity", fullList[i].track.external_urls.spotify)
+            printResults(listItem, imageNinfo, i)
+        }
+    })
+    .catch(error => console.error(error))
+}
+
+
+// --- Hämtar sökresultat --- //
 function getResults(resultList) {
     let fullList = resultList
     for (let i = 0; i < Number(resultLimit); i++) {
         if (typeSelect.value === "artist") {
         listItem = "<h3 class='itemName'>" + fullList.artists.items[i].name + "</h3>" 
-        imageNinfo = HTMLtemplate(fullList.artists.items[i].images[1].url, "info1", "info 2", "info3")
+        imageNinfo = HTMLtemplate(fullList.artists.items[i].images[1].url, fullList.artists.items[i].genres[0], fullList.artists.items[i].followers.total + " Followers", fullList.artists.items[i].popularity + "% Popularity", "", fullList.artists.items[i].external_urls.spotify)
         } else if (typeSelect.value === "album") {
         listItem = "<h3 class='itemName'>" + fullList.albums.items[i].name + "</h3><h3 class='creatorName'>" + fullList.albums.items[i].artists[0].name + "</h3>"
-        imageNinfo = HTMLtemplate(fullList.albums.items[i].images[1].url, "info1", "info2", "info3")
+        imageNinfo = HTMLtemplate(fullList.albums.items[i].images[1].url, fullList.albums.items[i].release_date, "", fullList.albums.items[i].total_tracks, "", fullList.albums.items[i].external_urls.spotify)
         } else if (typeSelect.value === "track") {
         listItem = "<h3 class='itemName'>" + fullList.tracks.items[i].name + "</h3><h3 class='creatorName'>" + fullList.tracks.items[i].artists[0].name + "</h3>"
-        imageNinfo = HTMLtemplate(fullList.tracks.items[i].album.images[1].url, "info1", "info2", "info3")
+        imageNinfo = HTMLtemplate(fullList.tracks.items[i].album.images[1].url, fullList.tracks.items[i].album.release_date, fullList.tracks.items[i].duration_ms, fullList.tracks.items[i].explicit, fullList.tracks.items[i].popularity + "% Popularity", fullList.tracks.items[i].external_urls.spotify)
         } 
         printResults(listItem, imageNinfo, i)
     }
