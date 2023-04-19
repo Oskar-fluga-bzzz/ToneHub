@@ -6,7 +6,7 @@ body {
     background-color: black;
     color: white;
     text-align: center;
-    min-height: 4000px; 
+    min-height: 3000px; 
 }
 
 
@@ -19,8 +19,26 @@ body {
     border-radius: 5px;
     border-width: 10px;
 }
+
 .upperContainer {
+    margin-top: 30px;
     margin-bottom: 50px;
+}
+
+
+/* navbar */
+li a {
+    padding: 30px;
+    color: white;
+    font-family: Tenor Sans, sans-serif;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+li {
+    display: inline-block;
 }
 
 

@@ -11,16 +11,22 @@
         <script src="https://kit.fontawesome.com/8fe14dd225.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <h3 style="font-family: 'Poiret One', cursive; font-size: 40px;" id="titleTxt" onclick="homeClick()"> ToneHub </h3>
-            <form class="upperContainer">
-                <input style="width:500px;"class="searchbox" type="text" id="txtSearch" placeholder="Search ToneHub" />
+        <h1 style="font-family: 'Poiret One' , cursive;" id="titleTxt" onclick="homeClick()"> ToneHub </h1>
+        <ul>
+            <li> <a> Home </a> </li>
+            <li> <a> About </a> </li>
+            <li> <a> Contribute </a> </li>
+                <form class="upperContainer">
+                <input style="width:400px;"class="searchbox" type="text" id="txtSearch" placeholder="Search ToneHub" />
                 <select class="searchbox" id="typeselect"> 
                     <option value="track"> in songs </option> 
                     <option value="album"> in albums </option> 
                     <option value="artist"> in artists </option> 
                 </select>
             </form>
+        </ul>
         <div class="container" id="searchResults"></div>
+        <footer style="font-family: 'Tenor Sans', sans serif;"> © 2023 Oskar L. Hughes. All Rights Reserved. </footer>
         <script src="app.js"></script>
     </body>
 </html>

@@ -108,14 +108,14 @@ function HTMLtemplate(image, info1, info2, info3, info4, linkToPage) {
         info3 = info3 + " Total Tracks"
     }
 
-    return imageNinfo = "<div id='album_art'><img src='" + image + "' alt='couldn't load image' width='200px' height='200px' class='image'><div class='text'> <h3>" + info1 + "</h3> <h3>" + info2 + "</h3> <h3>" + info4 + "</h3> <h3>" + info3 + "</h3> <a href=" + linkToPage + " target='blank'><i class='fa-brands fa-spotify'> </i></a> </div></div>"
+    return imageNinfo = "<div id='album_art'><img src='" + image + "' alt='couldn't load image' width='200vw' height='200vh' class='image'><div class='text'> <h3>" + info1 + "</h3> <h3>" + info2 + "</h3> <h3>" + info4 + "</h3> <h3>" + info3 + "</h3> <a href=" + linkToPage + " target='blank'><i class='fa-brands fa-spotify'> </i></a> </div></div>"
 }
 
 
 // --- Skriver ut rekommendationer --- //
 async function getRecommendations() {
     
-    fetch('https://api.spotify.com/v1/playlists/30Vqlaj8thTDahV45hY8ok?si=2b0a63290fba4ffe', {
+    fetch('https://api.spotify.com/v1/playlists/37i9dQZF1EQn4jwNIohw50?si=d5ce1152b7fd4c0b', {
         headers: {
             'Authorization': 'Bearer ' + accessToken
         }
