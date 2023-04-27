@@ -108,7 +108,7 @@ function HTMLtemplate(image, info1, info2, info3, info4, linkToPage) {
         info3 = info3 + " Total Tracks"
     }
 
-    return imageNinfo = "<div id='album_art'><img src='" + image + "' alt='couldn't load image' width='200vw' height='200vh' class='image'><div class='text'> <h3>" + info1 + "</h3> <h3>" + info2 + "</h3> <h3>" + info4 + "</h3> <h3>" + info3 + "</h3> <a href=" + linkToPage + " target='blank'><i class='fa-brands fa-spotify'> </i></a> </div></div>"
+    return imageNinfo = "<div id='album_art'><img src='" + image + "' alt='album art' width='200vw' height='200vh' class='image'><div class='text'> <h3>" + info1 + "</h3> <h3>" + info2 + "</h3> <h3>" + info4 + "</h3> <h3>" + info3 + "</h3> <a href=" + linkToPage + " target='blank'><i class='fa-brands fa-spotify'> </i></a> </div></div>"
 }
 
 
