@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&family=Tenor+Sans&display=swap');
+
+
+/* body css */
+body {
+    background-color: black;
+    color: white;
+    text-align: center;
+    min-height: 3000px; 
+}
+
+
+/* allt på toppen */
+.searchbox {
+    padding: 10px;
+    width: 150px;
+    border-style: solid;
+    border-color: white;
+    border-radius: 5px;
+    border-width: 10px;
+}
+
+.upperContainer {
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+
+/* navbar */
+li a {
+    padding: 30px;
+    color: white;
+    font-family: Tenor Sans, sans-serif;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+li {
+    display: inline-block;
+}
+
+
+/* sökresultat */
+.container {
+    column-count: 5;
+}
+.resultContainer {
+    min-height: 350px;
+    margin-bottom: 5px;
+    padding: 10px;
+    break-inside:avoid;
+    text-align: center;
+    position: relative;
+}
+.itemName {
+    font-size: 20px;
+    font-family: 'Poiret One', cursive;
+}
+.creatorName {
+    font-size: 15px;
+    font-family: 'Poiret One', cursive;
+}
+
+
+/* album hover */
+#album_art {position:relative;}
+#album_art .image,
+#album_art .text {transition: opacity 0.3s ease-in-out;}
+#album_art .text {position:absolute; top:0; left:0; opacity:0;}
+
+#album_art:hover .image {opacity:0.1;}
+#album_art:hover .text {opacity:1;}
+
+
+.image {
+    border-color: white;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
+}
+
+
+.text{
+    text-align: left;
+    margin-left: 30px;
+    font-size: 14px;
+    font-family: 'Tenor Sans', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.fa-spotify {
+    font-size: 20px;
+}
