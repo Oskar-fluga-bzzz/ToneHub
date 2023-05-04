@@ -1,124 +1,146 @@
-@import url('https://fonts.googleapis.com/css2?family=Poiret+One&family=Tenor+Sans&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Poiret+One&family=Tenor+Sans&display=swap");
 
 /* body css */
 body {
-    background-color: black;
-    color: white;
-    text-align: center;
-    min-height: 3000px;
-    align-items: center;
-    justify-content: center; 
-    font-family: 'Tenor Sans', sans-serif;
+  background-color: black;
+  color: white;
+  text-align: center;
+  min-height: 1000px;
+  align-items: center;
+  justify-content: center;
+  font-family: "Tenor Sans", sans-serif;
 }
-
 
 /* allt på toppen */
 .searchbox {
-    padding: 10px;
-    width: 150px;
-    border-style: solid;
-    border-color: white;
-    border-radius: 5px;
-    border-width: 10px;
+  padding: 10px;
+  width: 150px;
+  border-style: solid;
+  border-color: white;
+  border-radius: 5px;
+  border-width: 10px;
+}
+
+.donationForm {
+  display: flex;
+  flex-direction: column;
+  margin: 40px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.donationForm > li {
+  padding: 10px;
+  width: 100px;
 }
 
 .upperContainer {
-    margin-top: 30px;
-    margin-bottom: 50px;
+  margin-top: 30px;
+  margin-bottom: 50px;
 }
 
 .toneHub {
-    font-family: 'Poiret One' , cursive;
+  font-family: "Poiret One", cursive;
 }
-
 
 tr:nth-child(even) {
-    background-color: rgb(45, 45, 45);
-  }
-tr:nth-child(odd) {
-    background-color: rgb(24, 24, 24);
+  background-color: rgb(45, 45, 45);
 }
-table, th, td {
-    font-family: 'Tenor Sans', sans-serif;
-    padding: 10px;
-    font-size: 14px;
-  }
+tr:nth-child(odd) {
+  background-color: rgb(24, 24, 24);
+}
+table,
+th,
+td {
+  font-family: "Tenor Sans", sans-serif;
+  padding: 10px;
+  font-size: 14px;
+}
 table {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
-    margin-bottom: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 100px;
 }
 
 /* navbar */
 li a {
-    padding: 30px;
-    color: white;
-    font-family: Tenor Sans, sans-serif;
+  padding: 30px;
+  color: white;
+  font-family: Tenor Sans, sans-serif;
 }
 ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-li {
-    display: inline-block;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
-
+li {
+  display: inline-block;
+}
 
 /* sökresultat */
 .container {
-    column-count: 5;
+  column-count: 5;
 }
 .resultContainer {
-    min-height: 350px;
-    margin-bottom: 5px;
-    padding: 10px;
-    break-inside:avoid;
-    text-align: center;
-    position: relative;
+  min-height: 350px;
+  margin-bottom: 5px;
+  padding: 10px;
+  break-inside: avoid;
+  text-align: center;
+  position: relative;
 }
 .itemName {
-    font-size: 20px;
-    font-family: 'Poiret One', cursive;
+  font-size: 20px;
+  font-family: "Poiret One", cursive;
 }
 .creatorName {
-    font-size: 15px;
-    font-family: 'Poiret One', cursive;
+  font-size: 15px;
+  font-family: "Poiret One", cursive;
 }
-
 
 /* album hover */
-#album_art {position:relative;}
+#album_art {
+  position: relative;
+}
 #album_art .image,
-#album_art .text {transition: opacity 0.3s ease-in-out;}
-#album_art .text {position:absolute; top:0; left:0; opacity:0;}
-
-#album_art:hover .image {opacity:0.1;}
-#album_art:hover .text {opacity:1;}
-
-
-.image {
-    border-color: white;
-    border-style: solid;
-    border-width: 2px;
-    border-radius: 5px;
+#album_art .text {
+  transition: opacity 0.3s ease-in-out;
+}
+#album_art .text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
 }
 
+#album_art:hover .image {
+  opacity: 0.1;
+}
+#album_art:hover .text {
+  opacity: 1;
+}
 
-.text{
-    text-align: left;
-    margin-left: 30px;
-    font-size: 14px;
-    font-family: 'Tenor Sans', sans-serif;
+.image {
+  border-color: white;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 5px;
+}
+
+.text {
+  text-align: left;
+  margin-left: 30px;
+  font-size: 14px;
+  font-family: "Tenor Sans", sans-serif;
 }
 
 a {
-    text-decoration: none;
-    color: white;
+  text-decoration: none;
+  color: white;
 }
 
 .fa-spotify {
-    font-size: 20px;
+  font-size: 20px;
 }
