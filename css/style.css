@@ -9,7 +9,13 @@ body {
   align-items: center;
   justify-content: center;
   font-family: "Tenor Sans", sans-serif;
+  overflow-x: hidden;
 }
+
+.selectAmount {
+  margin-bottom: 40px;
+}
+
 
 /* allt på toppen */
 .searchbox {
@@ -19,20 +25,6 @@ body {
   border-color: white;
   border-radius: 5px;
   border-width: 10px;
-}
-
-.donationForm {
-  display: flex;
-  flex-direction: column;
-  margin: 40px;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.donationForm > li {
-  padding: 10px;
-  width: 100px;
 }
 
 .upperContainer {
@@ -143,4 +135,97 @@ a {
 
 .fa-spotify {
   font-size: 20px;
+}
+
+
+
+
+
+.row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  margin: 0 -16px;
+}
+
+.col-25 {
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+}
+
+.col-50 {
+  -ms-flex: 50%; /* IE10 */
+  flex: 50%;
+}
+
+.col-75 {
+  -ms-flex: 75%; /* IE10 */
+  flex: 75%;
+}
+
+.col-25,
+.col-50,
+.col-75 {
+  padding: 0 16px;
+}
+
+.donationContainer {
+  background-color: #2b2727;
+  padding: 20px 20px 20px 20px;
+  border: 1px solid rgb(23, 22, 22);
+  border-radius: 3px;
+  width: 50vw;
+  align-self: center;
+  margin-bottom: 40px;
+}
+
+input[type=text] {
+  width: 90%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.icon-container {
+  margin-bottom: 20px;
+  padding: 7px 0;
+  font-size: 24px;
+}
+
+.btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  width: 100%;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+span.price {
+  float: right;
+  color: grey;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (and change the direction - make the "cart" column go on top) */
+@media (max-width: 2000px) {
+  .row {
+    flex-direction: column-reverse;
+  }
+  .col-25 {
+    margin-bottom: 20px;
+  }
 }
