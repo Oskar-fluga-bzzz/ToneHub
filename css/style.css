@@ -16,7 +16,6 @@ body {
   margin-bottom: 40px;
 }
 
-
 /* allt på toppen */
 .searchbox {
   padding: 10px;
@@ -137,10 +136,6 @@ a {
   font-size: 20px;
 }
 
-
-
-
-
 .row {
   display: -ms-flexbox; /* IE10 */
   display: flex;
@@ -176,11 +171,10 @@ a {
   border: 1px solid rgb(23, 22, 22);
   border-radius: 3px;
   width: 50vw;
-  align-self: center;
   margin-bottom: 40px;
 }
 
-input[type=text] {
+input[type="text"] {
   width: 90%;
   margin-bottom: 20px;
   padding: 12px;
@@ -200,7 +194,7 @@ label {
 }
 
 .btn {
-  background-color: #04AA6D;
+  background-color: #101d3f;
   color: white;
   padding: 12px;
   margin: 10px 0;
