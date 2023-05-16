@@ -35,6 +35,8 @@ body {
   font-family: "Poiret One", cursive;
 }
 
+/* table */
+
 tr:nth-child(even) {
   background-color: rgb(45, 45, 45);
 }
@@ -113,6 +115,8 @@ li {
   opacity: 1;
 }
 
+/* misc */
+
 .image {
   border-color: white;
   border-style: solid;
@@ -135,6 +139,12 @@ a {
 .fa-spotify {
   font-size: 20px;
 }
+
+footer {
+  margin-top: 20px;
+}
+
+/* checkout */
 
 .row {
   display: -ms-flexbox; /* IE10 */
@@ -171,7 +181,7 @@ a {
   border: 1px solid rgb(23, 22, 22);
   border-radius: 3px;
   width: 50vw;
-  margin-bottom: 40px;
+  margin: auto;
 }
 
 input[type="text"] {
@@ -206,7 +216,7 @@ label {
 }
 
 .btn:hover {
-  background-color: #45a049;
+  background-color: #454ba0;
 }
 
 span.price {
@@ -214,7 +224,6 @@ span.price {
   color: grey;
 }
 
-/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (and change the direction - make the "cart" column go on top) */
 @media (max-width: 2000px) {
   .row {
     flex-direction: column-reverse;
