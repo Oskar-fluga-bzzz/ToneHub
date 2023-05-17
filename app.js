@@ -129,7 +129,7 @@ function HTMLtemplate(image, info1, info2, info3, info4, linkToPage) {
 // --- Skriver ut rekommendationer --- //
 async function getRecommendations() {
   fetch(
-    "https://api.spotify.com/v1/playlists/37i9dQZF1EQn4jwNIohw50?si=d5ce1152b7fd4c0b",
+    "https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF?si=1d4953d9485d43cf",
     {
       headers: {
         Authorization: "Bearer " + accessToken,
